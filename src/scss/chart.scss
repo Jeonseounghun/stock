@@ -6,6 +6,23 @@
   display: flex;
   flex-wrap: wrap;
 
+  
+  ::-webkit-scrollbar {
+    width: 10px;
+    
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
+
   .side {
     width: calc(10% - .25rem);
     height: 400;
@@ -39,10 +56,9 @@
     }
 
     .bottom {
-      
       top: 70%;
       font-size: 1rem;
-      width: 10px;
+      width: 50%;
       height: 10px;
       border: none;
       margin-left: 1rem;
@@ -53,7 +69,8 @@
     height: 400px;
     width: 90%;
     display: flex;
-    overflow: scroll;
+    overflow-y: none;
+    overflow-x: scroll;
     padding: 50px 0;
     flex-wrap: nowrap;
     
@@ -95,3 +112,5 @@
     border-bottom: 0.25rem solid lightgray;
   }
 }
+
+
