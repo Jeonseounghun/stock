@@ -1,6 +1,16 @@
 import React from "react";
 
 const SideBar = (props) => {
+  window.addEventListener("keydown", (e) => {
+    if (e.code == "KeyN") {
+      if (props.count >= 100) {
+        props.setCount(props.count + 1);
+      } else {
+        props.setCount(100);
+      }
+    }
+  });
+
   return (
     <>
       <div

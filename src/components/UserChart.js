@@ -4,21 +4,23 @@ import "../scss/chart.scss";
 import data from "../db/바이오로그디바이스.json";
 import SideBar from "./SideBar";
 import Contents from "./content";
+import Bottom from "./bottom";
 
 const UserChart = () => {
   const [stock_data, setData] = useState(null);
   const [count, setCount] = useState(0);
   const [high, setHigh] = useState(0);
   const [low, setLow] = useState(0);
+  const [buyPrice, setBuyPrice] = useState(0);
+  const [currentPrice, setCurrentPrice] = useState(0);
+  const [profit, setProfit] = useState(0);
+  const [money, setMoney] = useState(10000000);
+
   useEffect(() => {
     setData(data);
   }, [stock_data]);
 
   useEffect(() => {
-    high_low();
-  }, [count]);
-
-  const high_low = () => {
     let high_value = 0;
     let low_value = 9999999999;
     for (let i = 0; i < count; i++) {
@@ -31,7 +33,7 @@ const UserChart = () => {
     }
     setHigh(high_value);
     setLow(low_value);
-  };
+  }, [count]);
 
   return (
     <>
@@ -43,6 +45,14 @@ const UserChart = () => {
             low={low}
             setCount={setCount}
             count={count}
+            setBuyPrice={setBuyPrice}
+            setCurrentPrice={setCurrentPrice}
+            setProfit={setProfit}
+            setMoney={setMoney}
+            buyPrice={buyPrice}
+            currentPrice={currentPrice}
+            money={money}
+            profit={profit}
           />
         </div>
         <div className="side">
@@ -54,7 +64,19 @@ const UserChart = () => {
             count={count}
           />
         </div>
-        <div className="bottom"></div>
+        <div className="bottom">
+          <Bottom
+            setBuyPrice={setBuyPrice}
+            setCurrentPrice={setCurrentPrice}
+            setProfit={setProfit}
+            buyPrice={buyPrice}
+            currentPrice={currentPrice}
+            profit={profit}
+            money={money}
+            setMoney={setMoney}
+            money={money}
+          />
+        </div>
       </div>
     </>
   );
