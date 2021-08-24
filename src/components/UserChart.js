@@ -23,13 +23,26 @@ const UserChart = () => {
   useEffect(() => {
     let high_value = 0;
     let low_value = 9999999999;
-    for (let i = 0; i < count; i++) {
-      if (data[i].고가 > high_value) {
-        high_value = data[i].고가;
+    if (count >= 100) {
+      for (let i = 0; i < count; i++) {
+        if (data[i].고가 > high_value) {
+          high_value = data[i].고가;
+        }
+        if (data[i].저가 < low_value) {
+          low_value = data[i].저가;
+        }
       }
-      if (data[i].저가 < low_value) {
-        low_value = data[i].저가;
+    } else {
+      if (data[count].고가 > high_value) {
+        high_value = data[count].고가;
       }
+      if (data[count].저가 < low_value) {
+        low_value = data[count].저가;
+      }
+    }
+    let profit_cal = currentPrice - buyPrice;
+    if (buyPrice > 0) {
+      setProfit(profit_cal);
     }
     setHigh(high_value);
     setLow(low_value);
@@ -74,7 +87,6 @@ const UserChart = () => {
             profit={profit}
             money={money}
             setMoney={setMoney}
-            money={money}
           />
         </div>
       </div>
